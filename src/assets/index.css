@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container-fluid {
+  padding: 0 !important;
+}
+
+.page-link {
+  text-decoration: none;
+}
+
+.card-form {
+  max-width: 350px;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+  top: 20vh;
+  border-radius: 4px;
+  background-color: #dee2e6;
+  box-shadow: 4px 6px 10px #262b40;
+}
+
+.card {
+  padding: 10px;
+}
+
+.blue-gradient {
+  background-image: linear-gradient(to bottom right, #0d6efd, #262b40);
+  max-width: 100%;
+  height: 100vh;
+}
+
+.page-content-wrapper {
+  background-color: #f5f8fb;
+  color: #262b40;
+  text-align: center;
+  min-height: 100vh;
+  padding-bottom: 1.25rem;
+}
+
+.sidebar-wrapper {
+  background-color: #262b40;
+}
+@media (min-width: 768px) {
+  .sidebar-wrapper {
+    position: fixed;
+  }
+}
+
+.navbar-panel {
+  padding: 10px 0;
+}
+
+.sidebar-icon {
+  text-align: center;
+  margin-right: 0.5rem;
+  color: white;
+}
+.sidebar-text {
+  color: white;
+  font-weight: 600;
+}
+
+.sidebar-title {
+  text-decoration: none;
+}
+.sidebar-title:hover {
+  color: white;
+}
+
+.dropdown.Divider {
+  color: #262b40 !important;
+  border-top: #262b40 !important;
+}
+
+.accordion-item {
+  border: none !important;
+}
+.accordion-body {
+  background-color: #262b40;
+  padding: 0.5rem 0 !important;
+}
+.accordion-button {
+  padding: 0.6rem !important;
+  color: white !important;
+  background-color: #262b40 !important;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #2e3650 !important;
+}
+.accordion-button.collapsed::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.nav-item {
+  border-radius: 4px;
+}
+.nav-item.active > .nav-link {
+  color: white;
+  background-color: #2e3650;
+}
+.nav-link {
+  color: white;
+  background-color: #262b40;
+  border-radius: 4px;
+}
+.nav-link:hover {
+  color: white;
+  background-color: #2e3650;
+}
+.nav-link.active {
+  color: white;
+}
+
+.btn-darkblue {
+  background-color: #2e3650 !important;
+  border-color: #2e3650 !important;
+  color: white;
+}
+.btn-darkblue:hover {
+  background-color: #262b40 !important;
+  color: white;
+}
