@@ -18,6 +18,7 @@ const FormikBody = (props) => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleForm}
+      enableReinitialize={true}
     >
       <Form>
         <div>
@@ -31,7 +32,7 @@ const FormikBody = (props) => {
             </div>
           )}
 
-          <div className="form-group">
+          <div className="form-group text-center">
             <button
               type="submit"
               className={`btn btn-${buttonColor} mt-4`}
