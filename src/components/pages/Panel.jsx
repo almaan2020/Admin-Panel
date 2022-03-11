@@ -6,6 +6,7 @@ import { getTotalUser } from "../../store/slices/userSlice";
 import { getTotalResource } from "../../store/slices/resourceSlice";
 import Sidebar from "../layouts/Sidebar";
 import PanelRoutes from "../../routes/PanelRoutes";
+import TotalCard from "../common/TotalCard";
 
 const Panel = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -17,6 +18,7 @@ const Panel = () => {
   );
   const dispatch = useDispatch();
 
+  //read total from api just for first time
   useEffect(() => {
     if (userStatus === "idle") {
       dispatch(getTotalUser());
@@ -40,7 +42,6 @@ const Panel = () => {
         </div>
       </div>
       <div className="col-12 col-md-9 offset-md-3 page-content-wrapper overflow-hidden">
-      
         <div className="row navbar-panel gx-0">
           <div className="col-10"></div>
           <div className="col-2 text-center">
@@ -52,33 +53,12 @@ const Panel = () => {
             </button>
           </div>
         </div>
-        {/* section: */}
-        {/* cards */}
+
         <div className="row d-flex justify-content-evenly my-4">
-          <div className="shadow-sm card border-light col-sm-4">
-            <div className="card-body">
-              <div className="d-flex align-items-center justify-content-around mb-3">
-                <span className="fa fa-3x fa-users"></span>
-                <div className="d-flex flex-column  align-items-center">
-                  <h5>Users</h5>
-                  <h3 className="mb-1">{totalUsers}</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="shadow-sm card border-light col-sm-4">
-            <div className="card-body">
-              <div className="d-flex align-items-center justify-content-around mb-3">
-                <span className="fa fa-3x fa-cogs"></span>
-                <div className="d-flex flex-column  align-items-center">
-                  <h5>Resources</h5>
-                  <h3 className="mb-1">{totalResources}</h3>
-                </div>
-              </div>
-            </div>
-          </div>
+          <TotalCard title="Users" icon="users" value={totalUsers} />
+          <TotalCard title="Resources" icon="cogs" value={totalResources} />
         </div>
-        {/* main */}
+
         <div className="row d-flex justify-content-evenly mt-5">
           <PanelRoutes />
         </div>
