@@ -41,10 +41,17 @@ code {
   height: 100vh;
 }
 
+.no-underline {
+  text-decoration: none;
+  color: #262b40;
+}
+.clickable {
+  cursor: pointer;
+}
+
 .page-content-wrapper {
   background-color: #f5f8fb;
   color: #262b40;
-  text-align: center;
   min-height: 100vh;
   padding-bottom: 1.25rem;
 }
@@ -131,4 +138,24 @@ code {
 .btn-darkblue:hover {
   background-color: #262b40 !important;
   color: white;
+}
+
+.pagination > li > button {
+  background-color: white;
+  color: #262b40;
+}
+
+.pagination > li > button:focus,
+.pagination > li > button:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+  color: #7a7a7a;
+  background-color: #eee;
+  border-color: #ddd;
+}
+
+.pagination > .active > button {
+  color: white !important;
+  background-color: #262b40 !important;
+  border: solid 1px #262b40 !important;
 }
