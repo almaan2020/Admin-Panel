@@ -1,8 +1,10 @@
 import React from "react";
 import { get } from "lodash";
+import { useNavigate, createSearchParams } from "react-router-dom";
 
 const Table = (props) => {
-  const { columns, data } = props;
+  const { columns, data, trLink } = props;
+  const navigate = useNavigate();
 
   const renderCell = (item, column) => {
     if (column.content) return column.content(item);
@@ -24,7 +26,14 @@ const Table = (props) => {
       </thead>
       <tbody>
         {data.map((item) => (
-          <tr key={item._id}>
+          <tr
+            key={item.id}
+            onClick={() => {
+              if (trLink)
+                navigate(`${trLink}?${createSearchParams({ id: item.id })}`);
+            }}
+            className="clickable"
+          >
             {columns.map((column) => (
               <td key={createKey(item, column)}>{renderCell(item, column)}</td>
             ))}
