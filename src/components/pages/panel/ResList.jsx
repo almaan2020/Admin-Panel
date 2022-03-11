@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Link,
-  useNavigate,
-  createSearchParams,
-  useSearchParams,
-} from "react-router-dom";
-import { Image } from "react-bootstrap";
-import { getlist, deleteUser } from "../../../store/slices/userSlice";
+import { useSearchParams } from "react-router-dom";
+import { getlist } from "../../../store/slices/resourceSlice";
 import List from "../../common/List";
 
-const UserList = () => {
-  const { userList, status, total } = useSelector((state) => state.user);
+const ResList = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { resourceList, status, total } = useSelector(
+    (state) => state.resource
+  );
 
   const [searchParams] = useSearchParams();
   useEffect(() => {
@@ -21,67 +16,36 @@ const UserList = () => {
     dispatch(getlist(page));
   }, [dispatch, searchParams]);
 
-  const rowLink = (field) => (user) => {
-    const params = { id: user.id };
-    return (
-      <Link
-        to={`/panel/user-detail?${createSearchParams(params)}`}
-        className="no-underline"
-      >
-        {user[field]}
-      </Link>
-    );
-  };
-
   const columns = [
+    { path: "id", label: "ID" },
+    { path: "name", label: "Name" },
+    { path: "year", label: "Year" },
+    { path: "color", label: "Color" },
+    { path: "pantone_value", label: "Pantone" },
     {
-      path: "id",
-      label: "ID",
-      content: rowLink("id"),
-    },
-    { path: "email", label: "Email", content: rowLink("email") },
-    { path: "first_name", label: "FirstName", content: rowLink("first_name") },
-    { path: "last_name", label: "LastName", content: rowLink("last_name") },
-    {
-      key: "avatar",
-      content: (user) => <Image src={user.avatar} thumbnail />,
-    },
-    {
-      key: "edit",
-      content: (user) => {
-        const params = { id: user.id };
-        return (
-          <button
-            onClick={() =>
-              navigate(`/panel/user-edit?${createSearchParams(params)}`)
-            }
-            className="btn btn-outline-dark btn-sm"
-          >
-            <span className="fa fa-pencil"></span>
-          </button>
-        );
-      },
-    },
-    {
-      key: "delete",
-      content: (user) => (
-        <button
-          onClick={() => dispatch(deleteUser(user.id))}
-          className="btn btn-outline-dark btn-sm"
-        >
-          <span className="fa fa-trash"></span>
-        </button>
+      key: "colorDiv",
+      content: (resource) => (
+        <div
+          style={{
+            width: "14px",
+            height: "14px",
+            borderRadius: "4px",
+            backgroundColor: `${resource.color}`,
+          }}
+        />
       ),
     },
   ];
+
   return (
     <List
       status={status}
       columns={columns}
-      list={userList}
+      list={resourceList}
       itemCounts={total}
+      trLink={"/panel/resource-detail"}
     />
   );
 };
 
-export default UserList;
+export default ResList;
