@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/slices/authSlice";
 import { getTotalUser } from "../../store/slices/userSlice";
@@ -8,12 +7,11 @@ import Sidebar from "../layouts/Sidebar";
 import PanelRoutes from "../../routes/PanelRoutes";
 import TotalCard from "../common/TotalCard";
 
-const Panel = () => {
-  const { user: currentUser } = useSelector((state) => state.auth);
+const PanelDashboard = () => {
   const { total: totalUsers, status: userStatus } = useSelector(
     (state) => state.user
   );
-  const { total: totalResources, status: resStatus } = useSelector(
+  const { total: totalResources, status: resourceStatus } = useSelector(
     (state) => state.resource
   );
   const dispatch = useDispatch();
@@ -26,14 +24,11 @@ const Panel = () => {
   }, [dispatch, userStatus]);
 
   useEffect(() => {
-    if (resStatus === "idle") {
+    if (resourceStatus === "idle") {
       dispatch(getTotalResource());
     }
-  }, [dispatch, resStatus]);
+  }, [dispatch, resourceStatus]);
 
-  if (!currentUser) {
-    return <Navigate to="/login" />;
-  }
   return (
     <div className="row gx-0">
       <div className="col-12 col-md-3 sidebar-wrapper">
@@ -66,4 +61,4 @@ const Panel = () => {
     </div>
   );
 };
-export default Panel;
+export default PanelDashboard;
