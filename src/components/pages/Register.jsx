@@ -7,12 +7,15 @@ import FormikField from "../common/FormikField";
 import { register } from "../../store/slices/authSlice";
 import { clearMessage } from "../../store/slices/messageSlice";
 import validationErrors from "../../config/validationErrors";
+import routes from "../../config/routes";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const { text: formMsg } = useSelector((state) => state.message);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { login } = routes;
 
   useEffect(() => {
     dispatch(clearMessage());
@@ -41,7 +44,7 @@ const Register = () => {
     setLoading(true);
     try {
       await dispatch(register({ username, password })).unwrap();
-      navigate("/login");
+      navigate(login);
     } catch (error) {
       setLoading(false);
     }
