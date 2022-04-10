@@ -7,6 +7,7 @@ import FormikField from "../common/FormikField";
 import { login } from "../../store/slices/authSlice";
 import { clearMessage } from "../../store/slices/messageSlice";
 import validationErrors from "../../config/validationErrors";
+import routes from "../../config/routes";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,8 @@ const Login = () => {
   const { text: formMsg } = useSelector((state) => state.message);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { panel, home, register } = routes;
 
   useEffect(() => {
     dispatch(clearMessage());
@@ -36,14 +39,14 @@ const Login = () => {
     setLoading(true);
     try {
       await dispatch(login({ username, password })).unwrap();
-      navigate("/panel/home");
+      navigate(panel.concat(home)); // means navigate("/panel/home")
     } catch (error) {
       setLoading(false);
     }
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/panel/home" />;
+    return <Navigate to={`${panel}${home}`} />;
   }
   return (
     <div className="blue-gradient">
@@ -64,7 +67,7 @@ const Login = () => {
           <br></br>
           <div className="card card-container text-center">
             <span>
-              <Link className="page-link" to="/register">
+              <Link className="page-link" to={register}>
                 Don't have an account?
               </Link>
             </span>
