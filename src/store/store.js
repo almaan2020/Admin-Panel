@@ -11,7 +11,7 @@ const reducer = {
   resource: resourceReducer,
 }
 
-export const store = configureStore({
+const store = configureStore({
   reducer: reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: {
