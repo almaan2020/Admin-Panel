@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { getResource } from "../../../store/slices/resourceSlice";
 
-const ResDetail = () => {
+const ResourceDetail = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { resourceInfo } = useSelector((state) => state.resource);
@@ -50,4 +50,4 @@ const ResDetail = () => {
   );
 };
 
-export default ResDetail;
+export default ResourceDetail;
