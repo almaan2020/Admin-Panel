@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { getlist } from "../../../store/slices/resourceSlice";
 import List from "../../common/List";
+import routes from "../../../config/routes";
 
-const ResList = () => {
+const ResourceList = () => {
   const dispatch = useDispatch();
   const { resourceList, status, total } = useSelector(
     (state) => state.resource
   );
+
+  const { panel, resourceDetail } = routes;
 
   const [searchParams] = useSearchParams();
   useEffect(() => {
@@ -43,9 +46,9 @@ const ResList = () => {
       columns={columns}
       list={resourceList}
       itemCounts={total}
-      trLink={"/panel/resource-detail"}
+      trLink={`${panel}${resourceDetail}`}
     />
   );
 };
 
-export default ResList;
+export default ResourceList;
